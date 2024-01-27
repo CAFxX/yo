@@ -21,6 +21,8 @@ func {{ .Name }}PrimaryKeys() []string {
 {{- end }}
 	}
 }
+
+const {{ .Name }}PrimaryKeysCommaSeparated string = `{{range $i, $e := .PrimaryKeyFields }}{{if $i}},{{end}}{{ colname $e.Col }}{{ end }}`
 {{- end }}
 
 func {{ .Name }}Columns() []string {
@@ -30,6 +32,8 @@ func {{ .Name }}Columns() []string {
 {{- end }}
 	}
 }
+
+const {{ .Name }}ColumnsCommaSeparated string = `{{range $i, $e := .Fields }}{{if $i}},{{end}}{{ colname $e.Col }}{{ end }}`
 
 func {{ .Name }}WritableColumns() []string {
 	return []string{
